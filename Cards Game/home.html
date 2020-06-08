@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cards Game</title>
+    </head>
+    <link rel="stylesheet" type="text/css" href="/Cards Game/home.css">
+            <body>
+               <h1>Hi! This is a simple numbers game with HTML, CSS and Javascript.</h1>
+                <h3>Wanna play? These are the rules:</h3>
+                    <ul>
+                        <li>Choose a number between 1 and 100</li>
+                        <li>Click on the Let's Guess button</li>
+                        <li>If you guess, there will appear a message telling you that you've won</li>
+                        <li>If you don't guess, you will have 4 more chances</li>
+                    </ul>
+                    <p>Don't worry if you fail on the first try.
+                        Good Luck!</p>
+                    <div class="form">
+                        <label for="guessField">Guess the number!</label>
+                        <input type="text" id="guessField" class="guessField">
+                        <input type="submit" value="Submit Guess" class="guessSubmit">
+                    </div>
+                    <div class="resultParas">
+                        <p class="guesses"></p>
+                        <p class="lastResult"></p>
+                        <p class="lowOrHi"></p>
+                    </div>
+            </body>
+            <script type="text/javascript" src="/Cards Game/home.js"></script>
+</html>
