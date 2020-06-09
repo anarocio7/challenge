@@ -11,29 +11,31 @@ const guessField = document.querySelector('.guessField');
 
 let guessCount = 1;
 let resetButton;
-
-checkguess => {
-    let yourGuess = (guessField.value);
-    if(typeof yourGuess != 'number' || yourGuess > 100 || yourGuess < 1){
-        guesses.textContent('Please enter a valid number between 1 and 100')
+// Added validation, value of yourGuess must be a Number
+function checkGuess() {
+    let yourGuess = Number(guessField.value);
+    if(yourGuess > 100 || yourGuess < 1){
+        alert('Value must be a number between 1 and 100')
     }
     if(guessCount === 1) {
-        // The textContent property sets or returns the text content of the specified node, and all its descendants
+// The textContent property sets or returns the text content of the specified node, and all its descendants
         guesses.textContent = 'Last Attempts: ';
     }
-    guesses.textContent += userGuess + ' ';
+    guesses.textContent += yourGuess + ' ';
 
     if(yourGuess === randomNumber) {
         lastResult.textContent = 'Congratulations! You have guessed the number I was thinking!';
         lastResult.style.backgroundColor = 'green';
+        setGameOver();
     } else if(guessCount === 10) {
-        lastResult.textContent = 'Sorry!! Game is over :(';
+        lastResult.textContent = 'Sorry!! Game is over :( The correct answer was ' + randomNumber;
+        setGameOver();
     } else {
         lastResult.textContent = 'Wrong. Try Again';
-        lastResult.style.backgroundColor = 'red';
-        if(userGuess < randomNumber){
+        lastResult.style.color = 'red';
+        if(yourGuess < randomNumber){
             lowOrHi.textContent = 'The number is higher than you think';
-        } else if (userGuess > randomNumber) {
+        } else if (yourGuess > randomNumber) {
             lowOrHi.textContent = 'Hey, do not go that far kid. Number is lower';
         }
     }
@@ -41,4 +43,38 @@ checkguess => {
         guessField.value = '';
         guessField.focus();
 }
+
+guessSubmit.addEventListener('click', checkGuess);
+
+function setGameOver() {
+    guessField.disabled = true;
+    guessSubmit.disabled = true;
+    resetButton = document.createElement('button');
+    guessField.focus();
+    resetButton.textContent = 'Start New Game';
+    document.body.appendChild(resetButton);
+    resetButton.addEventListener('click', resetGame);
+  }
+  
+function resetGame() {
+    guessCount = 1;
+  
+    const resetParas = document.querySelectorAll('.resultParas p');
+    for (let i = 0 ; i < resetParas.length ; i++) {
+      resetParas[i].textContent = '';
+    }
+  
+    resetButton.parentNode.removeChild(resetButton);
+  
+    guessField.disabled = false;
+    guessSubmit.disabled = false;
+    guessField.value = '';
+    guessField.focus();
+  
+    lastResult.style.backgroundColor = 'white';
+  
+    randomNumber = Math.floor(Math.random() * 100) + 1;
+  }
+
+
 

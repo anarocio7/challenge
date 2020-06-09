@@ -1,7 +1,18 @@
 body {
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-image: linear-gradient(#ee9ca7, #cc2b5e, #753a88);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 h1, h3 {
     text-align: center;
+}
+
+
+.guessSubmit {
+    background-color: lightblue;
+    border-radius: 10px;
+    text-align: center;
+    size: 10px;
 }
